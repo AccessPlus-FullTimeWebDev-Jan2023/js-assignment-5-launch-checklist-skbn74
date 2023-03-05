@@ -27,22 +27,59 @@ function validateInput(testInput) {
         return "Is a Number";
     }
    
-}
+};
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
+    let pilotNameInput = document.getElementById("pilotStatus");
+    let copilotNameInput = document.getElementById("copilotStatus");
+    let fuelStatusInput = document.getElementById("fuelStatus");
+    let cargoStatusInput = document.getElementById("cargoStatus");
+    let launchStatusInput = document.getElementById("launchStatus");
    
+   if(validateInput(pilot) === "Empty" || validateInput(copilot)=== "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
+    window.alert("All fields are required!");
+   } else if (validateInput(pilot) === "Is a Number" || validateInput(copilot)=== "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number") {
+    window.alert("Make sure to enter valid information for each field!");
+   } else {
+    list.style.visibilty = "visible";
+    pilotNameInput.innerHTML = `${pilotNameInput} is Ready`;
+    copilotNameInput.innerHTML = `${copilotNameInput} is Ready`;
+   }
+   
+        if(fuelStatusInput < 10000 && cargoStatusInput <= 10000) {
+            fuelStatusInput.innerHTML = "Fuel level too low for launch";
+            cargoStatusInput.innerHTML = "Cargo mass low enough for launch";
+            launchStatusInput.innerHTML = "Shuttle Not Ready for Launch";
+            launchStatusInput.style.color = "#C7254E";
+        } else if //(enough fuel but too heavy)
+        //else if (not enough fuel and mass too heavy)
+        // else {}
+    ) 
+
+
+
+
+
+    
+    
+
+    
+    
 }
 
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        return response.json();
         });
 
     return planetsReturned;
 }
 
 function pickPlanet(planets) {
+    let index = Math.floor(Math.random()*planets.length);
+    return planets[index]
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;

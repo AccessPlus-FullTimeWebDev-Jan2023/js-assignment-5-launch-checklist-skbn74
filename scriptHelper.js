@@ -42,8 +42,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     window.alert("Make sure to enter valid information for each field!");
    } else {
     list.style.visibilty = "visible";
-    pilotNameInput.innerHTML = `${pilotNameInput} is Ready`;
-    copilotNameInput.innerHTML = `${copilotNameInput} is Ready`;
+    pilotNameInput.innerHTML = `Pilot ${pilotNameInput} is Ready`;
+    copilotNameInput.innerHTML = `Co-pilot ${copilotNameInput} is Ready`;
    }
    
         if(fuelStatusInput < 10000 && cargoStatusInput <= 10000) {
@@ -51,21 +51,23 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             cargoStatusInput.innerHTML = "Cargo mass low enough for launch";
             launchStatusInput.innerHTML = "Shuttle Not Ready for Launch";
             launchStatusInput.style.color = "#C7254E";
-        } else if //(enough fuel but too heavy)
-        //else if (not enough fuel and mass too heavy)
-        // else {}
-    ) 
-
-
-
-
-
-    
-    
-
-    
-    
-}
+        } else if (fuelStatusInput >= 10000 && cargoStatusInput > 10000) {
+            fuelStatusInput.innerHTML = "Fuel level high enough for launch";
+            cargoStatusInput.innerHTML = "Cargo mass too heavy for launch";
+            launchStatusInput.innerHTML = "Shuttle Not Ready for Launch";
+            launchStatusInput.style.color = "#C7254E";
+        } else if (fuelStatusInput < 10000 && cargoStatusInput > 10000) {
+            fuelStatusInput.innerHTML = "Fuel level too low for launch";
+            cargoStatusInput.innerHTML = "Cargo mass too heavy for launch";
+            launchStatusInput.innerHTML = "Shuttle Not Ready for Launch";
+            launchStatusInput.style.color = "#C7254E";
+        } else {
+            fuelStatusInput.innerHTML = "Fuel level high enough for launch";
+            cargoStatusInput.innerHTML = "Cargo mass low enough for launch";
+            launchStatusInput.innerHTML = "Shuttle is Ready for Launch";
+            launchStatusInput.style.color = "rgb(65, 159, 106)";
+        }; 
+};
 
 async function myFetch() {
     let planetsReturned;
@@ -87,3 +89,4 @@ module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
 module.exports.pickPlanet = pickPlanet; 
 module.exports.myFetch = myFetch;
+ 

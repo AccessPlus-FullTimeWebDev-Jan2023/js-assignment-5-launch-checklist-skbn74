@@ -11,7 +11,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Name: ${name} </li>
                     <li>Diameter:${diameter} </li>
                     <li>Star: ${star}</li>
-                    <li>Distance from Earth: ${star}</li>
+                    <li>Distance from Earth: ${distance}</li>
                     <li>Number of Moons: ${moons}</li>
                 </ol>
                 <img src="${imageUrl}">`
@@ -44,9 +44,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     window.alert("Make sure to enter valid information for each field!");
    } else {
     list.style.visibilty = "visible";
-    pilotNameInput.innerHTML = `Pilot ${pilotNameInput} is Ready`;
-    copilotNameInput.innerHTML = `Co-pilot ${copilotNameInput} is Ready`;
-   }
+    pilotNameInput.innerHTML = `Pilot ${pilot} is ready for launch`;
+    copilotNameInput.innerHTML = `Co-pilot ${copilot} is ready for launch`;
    
         if(fuelStatusInput < 10000 && cargoStatusInput <= 10000) {
             fuelStatusInput.innerHTML = "Fuel level too low for launch";
@@ -68,7 +67,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             cargoStatusInput.innerHTML = "Cargo mass low enough for launch";
             launchStatusInput.innerHTML = "Shuttle is Ready for Launch";
             launchStatusInput.style.color = "rgb(65, 159, 106)";
-        }; 
+        }
+    }
 };
 
 async function myFetch() {
